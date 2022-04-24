@@ -1,4 +1,60 @@
 # ajax-table sample
+
+show table with append
+```
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Customer_info </title>
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="includes/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+		
+</head>
+<table id="sorted" class="table table-striped table-bordered">
+  <thead>
+      <tr>
+          <th>The table header 1</th>
+          <th>The table header 2</th>
+      </tr>
+  </thead>
+  <tbody>
+          <div class="editview-product-box"> </div>
+  </tbody>
+</table>
+<H3>record</H3>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- 引入 jQuery -->
+<script type="text/javascript">
+$.ajax({
+    type: "GET",
+    url: "https://jsonplaceholder.typicode.com/todos",
+    data: {
+        product: "test",
+    },
+    success: function(data) {
+        onSuccess(data);
+    }
+});
+
+function onSuccess(data) {
+  let html = "";
+  $.each(data, function(k, v){
+    var id = $("<td></td>").append(v.id);
+    var title = $("<td></td>").append(v.title);
+    $("<tr></tr>").append(id).append(title).appendTo($("table tbody"));
+  })
+  $('.editview-radio-box').html(html);
+}
+</script>
+```
+
+https://jsonplaceholder.typicode.com/todo info
 ```
 [
   {
